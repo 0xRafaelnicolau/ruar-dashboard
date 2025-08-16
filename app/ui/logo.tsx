@@ -7,10 +7,10 @@ export default function Logo() {
             className={`${montserrat.className} flex flex-row items-center leading-none text-white`}
         >
             <Image
-                src="/logo.jpg"
+                src="/logo.svg"
                 alt="Ruar Logo"
-                width={80}
-                height={80}
+                width={64}
+                height={64}
                 priority
             />
         </div>

@@ -2,7 +2,7 @@
 
 import { Calendar } from 'lucide-react';
 import { montserrat } from '@/app/ui/fonts';
-import { Revenue } from '@/app/lib/definitions';
+import { Profit } from '@/app/lib/definitions';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -23,21 +23,21 @@ ChartJS.register(
     Legend
 );
 
-interface RevenueChartProps {
-    revenue: Revenue[];
+interface ProfitChartProps {
+    profit: Profit[];
 }
 
-export default function RevenueChart({ revenue }: RevenueChartProps) {
-    if (!revenue || revenue.length === 0) {
+export default function ProfitChart({ profit }: ProfitChartProps) {
+    if (!profit || profit.length === 0) {
         return <p className="mt-4 text-black">No data available.</p>;
     }
 
     const data = {
-        labels: revenue.map(month => month.month),
+        labels: profit.map(month => month.month),
         datasets: [
             {
-                label: 'Revenue',
-                data: revenue.map(month => month.revenue),
+                label: 'Profit',
+                data: profit.map(month => month.revenue),
                 backgroundColor: 'black',
                 borderColor: 'black',
                 borderWidth: 0,
@@ -102,7 +102,7 @@ export default function RevenueChart({ revenue }: RevenueChartProps) {
     return (
         <div className="w-full md:col-span-4">
             <h2 className={`${montserrat.className} mb-4 text-xl md:text-2xl text-black`}>
-                Faturação Mensal
+                Lucro Mensal
             </h2>
             <div className="rounded-xl bg-gray-50 p-4">
                 <div className="bg-white p-4 rounded-md">

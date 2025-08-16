@@ -3,14 +3,15 @@ import {
     Clock,
     Users,
     Inbox,
+    TrendingUp,
 } from 'lucide-react';
 import { montserrat } from '@/app/ui/fonts';
 
 const iconMap = {
     collected: Banknote,
     customers: Users,
-    pending: Clock,
-    invoices: Inbox,
+    profit: TrendingUp,
+    services: Inbox,
 };
 
 export default async function CardWrapper() {
@@ -37,14 +38,14 @@ export function Card({
 }: {
     title: string;
     value: number | string;
-    type: 'invoices' | 'customers' | 'pending' | 'collected';
+    type: 'services' | 'customers' | 'profit' | 'collected';
 }) {
     const Icon = iconMap[type];
 
     return (
         <div className="rounded-xl bg-gray-50 p-2 shadow-sm">
             <div className="flex p-4">
-                {Icon ? <Icon className="h-5 w-5 text-gray-700" /> : null}
+                {Icon ? <Icon className="h-5 w-5 text-black" /> : null}
                 <h3 className="ml-2 text-sm font-medium">{title}</h3>
             </div>
             <p

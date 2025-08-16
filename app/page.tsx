@@ -7,7 +7,9 @@ export default function Page() {
     <div className="flex h-screen">
       <div className="hidden md:block w-1/2 bg-black flex items-center justify-center">
         <div className="flex items-center justify-center w-full h-full">
-          <Logo />
+          <div className="scale-[5]">
+            <Logo />
+          </div>
         </div>
       </div>
       <div className="w-full md:w-1/2 bg-white flex items-center justify-center">

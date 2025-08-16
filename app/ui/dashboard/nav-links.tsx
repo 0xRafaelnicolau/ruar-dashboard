@@ -3,14 +3,20 @@ import {
     Home,
     Briefcase,
     Building2,
+    Receipt,
 } from 'lucide-react';
 
 const links = [
     { name: 'Painel', href: '/dashboard', icon: Home },
     {
-        name: 'Pagamentos',
-        href: '/dashboard/invoices',
+        name: 'Serviços',
+        href: '/dashboard/services',
         icon: Briefcase,
+    },
+    {
+        name: 'Pagamentos',
+        href: '/dashboard/payments',
+        icon: Receipt,
     },
     {
         name: 'Clientes',

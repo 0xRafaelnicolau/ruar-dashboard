@@ -1,76 +1,89 @@
-export type User = {
+/*//////////////////////////////////////////////////////////////
+                        MANAGER
+//////////////////////////////////////////////////////////////*/
+
+export type Manager = {
     id: string;
     name: string;
     email: string;
+    phone: string;
     password: string;
 };
+
+export type ManagerField = {
+    id: string;
+    name: string;
+}
+
+/*//////////////////////////////////////////////////////////////
+                        CUSTOMER
+//////////////////////////////////////////////////////////////*/
 
 export type Customer = {
     id: string;
     name: string;
     email: string;
+    phone: string;
 };
 
-export type Invoice = {
+export type CustomerField = {
     id: string;
+    name: string;
+}
+
+/*//////////////////////////////////////////////////////////////
+                        SERVICE
+//////////////////////////////////////////////////////////////*/
+
+export type Service = {
+    id: string;
+    manager_id: string;
     customer_id: string;
+    collaborator_id: string[];
+    name: string;
+    description: string;
+    type: 'video' | 'music' | 'marketing';
+    price: number;
+    costs: number;
+}
+
+/*//////////////////////////////////////////////////////////////
+                        PAYMENT
+//////////////////////////////////////////////////////////////*/
+
+export type Payment = {
+    id: string;
+    service_id: string;
     amount: number;
     date: string;
+    description: string;
+    type: 'incoming' | 'outgoing'
     status: 'pending' | 'paid';
 };
+
+/*//////////////////////////////////////////////////////////////
+                        REVENUE
+//////////////////////////////////////////////////////////////*/
 
 export type Revenue = {
     month: string;
     revenue: number;
 };
 
-export type LatestInvoice = {
-    id: string;
-    name: string;
-    email: string;
-    amount: string;
+/*//////////////////////////////////////////////////////////////
+                        COSTS
+//////////////////////////////////////////////////////////////*/
+
+export type Costs = {
+    month: string;
+    revenue: number;
 };
 
-export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
-    amount: number;
-};
+/*//////////////////////////////////////////////////////////////
+                        PROFIT
+//////////////////////////////////////////////////////////////*/
 
-export type InvoicesTable = {
-    id: string;
-    customer_id: string;
-    name: string;
-    email: string;
-    date: string;
-    amount: number;
-    status: 'pending' | 'paid';
-};
-
-export type CustomersTableType = {
-    id: string;
-    name: string;
-    email: string;
-    total_invoices: number;
-    total_pending: number;
-    total_paid: number;
-};
-
-export type FormattedCustomersTable = {
-    id: string;
-    name: string;
-    email: string;
-    total_invoices: number;
-    total_pending: string;
-    total_paid: string;
-};
-
-export type CustomerField = {
-    id: string;
-    name: string;
-};
-
-export type InvoiceForm = {
-    id: string;
-    customer_id: string;
-    amount: number;
-    status: 'pending' | 'paid';
+export type Profit = {
+    month: string;
+    revenue: number;
 };
