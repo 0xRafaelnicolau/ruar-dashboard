@@ -1,8 +1,8 @@
 /*//////////////////////////////////////////////////////////////
-                        MANAGER
+                        COLLABORATOR
 //////////////////////////////////////////////////////////////*/
 
-export type Manager = {
+export type Collaborator = {
     id: string;
     name: string;
     email: string;
@@ -10,7 +10,7 @@ export type Manager = {
     password: string;
 };
 
-export type ManagerField = {
+export type CollaboratorField = {
     id: string;
     name: string;
 }
@@ -37,13 +37,22 @@ export type CustomerField = {
 
 export type Service = {
     id: string;
-    manager_id: string;
     customer_id: string;
-    collaborator_id: string[];
     name: string;
     description: string;
     type: 'video' | 'music' | 'marketing';
 }
+
+export type ServicesTable = {
+    id: string;
+    service_name: string;
+    customer_name: string;
+    email: string;
+    type: string;
+    description: string;
+    amount: number;
+    date: string;
+};
 
 /*//////////////////////////////////////////////////////////////
                         PAYMENT
@@ -52,6 +61,7 @@ export type Service = {
 export type Payment = {
     id: string;
     service_id: string;
+    collaborator_id?: string; // Optional field to link payment to collaborator
     amount: number;
     date: string;
     description: string;
@@ -74,7 +84,7 @@ export type Revenue = {
 
 export type Costs = {
     month: string;
-    revenue: number;
+    costs: number;
 };
 
 /*//////////////////////////////////////////////////////////////
@@ -83,5 +93,5 @@ export type Costs = {
 
 export type Profit = {
     month: string;
-    revenue: number;
+    profit: number;
 };

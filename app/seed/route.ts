@@ -1,13 +1,13 @@
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
-import { managers, customers, services, payments } from '../lib/mock-data';
+import { collaborators, customers, services, payments } from '../lib/mock-data';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
-async function seedManagers() {
+async function seedCollaborators() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
   await sql`
-    CREATE TABLE IF NOT EXISTS managers (
+    CREATE TABLE IF NOT EXISTS collaborators (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       email TEXT NOT NULL UNIQUE,
@@ -16,18 +16,18 @@ async function seedManagers() {
     );
   `;
 
-  const insertedManagers = await Promise.all(
-    managers.map(async (manager) => {
-      const hashedPassword = await bcrypt.hash(manager.password, 10);
+  const insertedCollaborators = await Promise.all(
+    collaborators.map(async (collaborator) => {
+      const hashedPassword = await bcrypt.hash(collaborator.password, 10);
       return sql`
-        INSERT INTO managers (id, name, email, password, phone)
-        VALUES (${manager.id}, ${manager.name}, ${manager.email}, ${hashedPassword}, ${manager.phone})
+        INSERT INTO collaborators (id, name, email, password, phone)
+        VALUES (${collaborator.id}, ${collaborator.name}, ${collaborator.email}, ${hashedPassword}, ${collaborator.phone})
         ON CONFLICT (id) DO NOTHING;
       `;
     }),
   );
 
-  return insertedManagers;
+  return insertedCollaborators;
 }
 
 async function seedCustomers() {
@@ -61,13 +61,10 @@ async function seedServices() {
   await sql`
     CREATE TABLE IF NOT EXISTS services (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-      manager_id UUID NOT NULL,
       customer_id UUID NOT NULL,
-      collaborator_id TEXT[] NOT NULL,
       name VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
       type VARCHAR(50) NOT NULL,
-      FOREIGN KEY (manager_id) REFERENCES managers(id),
       FOREIGN KEY (customer_id) REFERENCES customers(id)
     );
   `;
@@ -75,8 +72,8 @@ async function seedServices() {
   const insertedServices = await Promise.all(
     services.map(
       (service) => sql`
-        INSERT INTO services (id, manager_id, customer_id, collaborator_id, name, description, type)
-        VALUES (${service.id}, ${service.manager_id}, ${service.customer_id}, ${service.collaborator_id}, ${service.name}, ${service.description}, ${service.type})
+        INSERT INTO services (id, customer_id, name, description, type)
+        VALUES (${service.id}, ${service.customer_id}, ${service.name}, ${service.description}, ${service.type})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
@@ -92,20 +89,22 @@ async function seedPayments() {
     CREATE TABLE IF NOT EXISTS payments (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
       service_id UUID NOT NULL,
+      collaborator_id UUID,
       amount DECIMAL(10,2) NOT NULL,
       date DATE NOT NULL,
       description TEXT,
       type VARCHAR(50) NOT NULL,
       status VARCHAR(50) NOT NULL,
-      FOREIGN KEY (service_id) REFERENCES services(id)
+      FOREIGN KEY (service_id) REFERENCES services(id),
+      FOREIGN KEY (collaborator_id) REFERENCES collaborators(id)
     );
   `;
 
   const insertedPayments = await Promise.all(
     payments.map(
       (payment) => sql`
-        INSERT INTO payments (id, service_id, amount, date, description, type, status)
-        VALUES (${payment.id}, ${payment.service_id}, ${payment.amount}, ${payment.date}, ${payment.description || null}, ${payment.type}, ${payment.status})
+        INSERT INTO payments (id, service_id, collaborator_id, amount, date, description, type, status)
+        VALUES (${payment.id}, ${payment.service_id}, ${payment.collaborator_id || null}, ${payment.amount}, ${payment.date}, ${payment.description || null}, ${payment.type}, ${payment.status})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
@@ -116,8 +115,7 @@ async function seedPayments() {
 
 export async function GET() {
   try {
-    // Seed tables in order to respect foreign key dependencies
-    await seedManagers();
+    await seedCollaborators();
     await seedCustomers();
     await seedServices();
     await seedPayments();

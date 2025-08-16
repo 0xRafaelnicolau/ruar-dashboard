@@ -37,7 +37,7 @@ export default function CostsChart({ costs }: CostsChartProps) {
         datasets: [
             {
                 label: 'Costs',
-                data: costs.map(month => month.revenue),
+                data: costs.map(month => month.costs),
                 backgroundColor: 'black',
                 borderColor: 'black',
                 borderWidth: 0,

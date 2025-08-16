@@ -37,7 +37,7 @@ export default function ProfitChart({ profit }: ProfitChartProps) {
         datasets: [
             {
                 label: 'Profit',
-                data: profit.map(month => month.revenue),
+                data: profit.map(month => month.profit),
                 backgroundColor: 'black',
                 borderColor: 'black',
                 borderWidth: 0,

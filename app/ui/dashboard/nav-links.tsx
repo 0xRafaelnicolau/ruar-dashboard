@@ -3,7 +3,6 @@ import {
     Home,
     Briefcase,
     Building2,
-    Receipt,
 } from 'lucide-react';
 
 const links = [
@@ -12,11 +11,6 @@ const links = [
         name: 'Serviços',
         href: '/dashboard/services',
         icon: Briefcase,
-    },
-    {
-        name: 'Pagamentos',
-        href: '/dashboard/payments',
-        icon: Receipt,
     },
     {
         name: 'Clientes',

@@ -1,37 +1,61 @@
 import postgres from 'postgres';
 import {
-  ManagerField,
+  CollaboratorField,
   CustomerField,
   Revenue,
   Costs,
-  Profit
+  Profit,
+  ServicesTable
 } from './definitions';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// Ensure database connection with proper error handling
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require', });
+
+const ITEMS_PER_PAGE = 8;
 
 /*//////////////////////////////////////////////////////////////
-                        MANAGER
+                        COLLABORATOR
 //////////////////////////////////////////////////////////////*/
 
-export async function fetchManagers() {
+export async function fetchCollaborators() {
   try {
-    const managers = await sql<ManagerField[]>`
+    const collaborators = await sql<CollaboratorField[]>`
         SELECT
           id,
           name
-        FROM managers
+        FROM collaborators
         ORDER BY name ASC
       `;
 
-    return managers;
+    return collaborators || [];
   } catch (err) {
     console.error('Database Error:', err);
-    throw new Error('Failed to fetch all managers.');
+    throw new Error('Failed to fetch all collaborators.');
+  }
+}
+
+export async function fetchCollaboratorEarnings() {
+  try {
+    const collaboratorEarnings = await sql`
+      SELECT 
+        c.id,
+        c.name,
+        COALESCE(SUM(p.amount), 0) as total_earnings
+      FROM collaborators c
+      LEFT JOIN payments p ON c.id = p.collaborator_id AND p.type = 'outgoing' AND p.status = 'paid'
+      GROUP BY c.id, c.name
+      ORDER BY total_earnings DESC
+    `;
+
+    return collaboratorEarnings || [];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch collaborator earnings.');
   }
 }
 
 /*//////////////////////////////////////////////////////////////
-                        MANAGER
+                        CUSTOMER
 //////////////////////////////////////////////////////////////*/
 
 export async function fetchCustomers() {
@@ -44,7 +68,7 @@ export async function fetchCustomers() {
         ORDER BY name ASC
       `;
 
-    return customers;
+    return customers || [];
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all customers.');
@@ -53,8 +77,8 @@ export async function fetchCustomers() {
 
 export async function fetchNumberOfCustomers() {
   try {
-    const customersCount = await sql`SELECT COUNT(*) FROM customers`;
-    return customersCount[0].count;
+    const customersCount = await sql`SELECT COUNT(*) as count FROM customers`;
+    return customersCount[0]?.count || 0;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the total number of customers.');
@@ -67,11 +91,70 @@ export async function fetchNumberOfCustomers() {
 
 export async function fetchNumberOfServices() {
   try {
-    const servicesCount = await sql`SELECT COUNT(*) FROM services`;
-    return servicesCount[0].count;
+    const servicesCount = await sql`SELECT COUNT(*) as count FROM services`;
+    return servicesCount[0]?.count || 0;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the total number of services.');
+  }
+}
+
+export async function fetchFilteredServices(
+  query: string,
+  currentPage: number,
+) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  try {
+    const services = await sql<ServicesTable[]>`
+      SELECT
+        s.id,
+        s.name as service_name,
+        c.name as customer_name,
+        c.email,
+        s.type,
+        s.description,
+        COALESCE(SUM(CASE WHEN p.type = 'incoming' THEN p.amount ELSE 0 END), 0) as amount,
+        COALESCE(MIN(p.date), CURRENT_DATE) as date
+      FROM services s
+      JOIN customers c ON s.customer_id = c.id
+      LEFT JOIN payments p ON s.id = p.service_id
+      WHERE
+        c.name ILIKE ${`%${query}%`} OR
+        c.email ILIKE ${`%${query}%`} OR
+        s.name ILIKE ${`%${query}%`} OR
+        s.description ILIKE ${`%${query}%`} OR
+        s.type ILIKE ${`%${query}%`}
+      GROUP BY s.id, s.name, c.name, c.email, s.type, s.description
+      ORDER BY s.id DESC
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+    `;
+
+    return services;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch services.');
+  }
+}
+
+export async function fetchServicesPages(query: string) {
+  try {
+    const data = await sql`SELECT COUNT(DISTINCT s.id)
+    FROM services s
+    JOIN customers c ON s.customer_id = c.id
+    WHERE
+      c.name ILIKE ${`%${query}%`} OR
+      c.email ILIKE ${`%${query}%`} OR
+      s.name ILIKE ${`%${query}%`} OR
+      s.description ILIKE ${`%${query}%`} OR
+      s.type ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(data[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of services.');
   }
 }
 
@@ -87,7 +170,7 @@ export async function fetchTotalPayments() {
       WHERE type = 'incoming'
     `;
 
-    return totalPayments[0].total_payments;
+    return totalPayments[0]?.total_payments || 0;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total payments data.');
@@ -102,7 +185,7 @@ export async function fetchPaidPayments() {
       WHERE status = 'paid' AND type = 'incoming'
     `;
 
-    return paidPayments[0].total_amount;
+    return paidPayments[0]?.total_amount || 0;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the total amount of paid payments.');
@@ -117,10 +200,10 @@ export async function fetchPendingPayments() {
       WHERE status = 'pending' AND type = 'incoming'
     `;
 
-    return pendingPayments[0].total_amount;
+    return pendingPayments[0]?.total_amount || 0;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch the total amount of pending payments .');
+    throw new Error('Failed to fetch the total amount of pending payments.');
   }
 }
 
@@ -157,10 +240,10 @@ export async function fetchRevenue(): Promise<Revenue[]> {
       ORDER BY m.month_date ASC
     `;
 
-    return revenue;
+    return revenue || [];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch revenue data.');
+    return [];
   }
 }
 
@@ -182,7 +265,7 @@ export async function fetchCosts(): Promise<Costs[]> {
         SELECT 
           TO_CHAR(date, 'Mon') as month,
           EXTRACT(MONTH FROM date) as month_num,
-          COALESCE(SUM(amount), 0) as revenue
+          COALESCE(SUM(amount), 0) as costs
         FROM payments 
         WHERE 
           type = 'outgoing' 
@@ -191,16 +274,16 @@ export async function fetchCosts(): Promise<Costs[]> {
       )
       SELECT 
         TO_CHAR(m.month_date, 'Mon') as month,
-        COALESCE(mc.revenue, 0) as revenue
+        COALESCE(mc.costs, 0) as costs
       FROM months m
       LEFT JOIN monthly_costs mc ON TO_CHAR(m.month_date, 'Mon') = mc.month
       ORDER BY m.month_date ASC
     `;
 
-    return costs;
+    return costs || [];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch costs data.');
+    return [];
   }
 }
 
@@ -240,17 +323,17 @@ export async function fetchProfit(): Promise<Profit[]> {
       )
       SELECT 
         TO_CHAR(m.month_date, 'Mon') as month,
-        COALESCE(mr.revenue, 0) - COALESCE(mc.costs, 0) as revenue
+        COALESCE(mr.revenue, 0) - COALESCE(mc.costs, 0) as profit
       FROM months m
       LEFT JOIN monthly_revenue mr ON TO_CHAR(m.month_date, 'Mon') = mr.month
       LEFT JOIN monthly_costs mc ON TO_CHAR(m.month_date, 'Mon') = mc.month
       ORDER BY m.month_date ASC
     `;
 
-    return profit;
+    return profit || [];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch profit data.');
+    return [];
   }
 }
 
@@ -265,7 +348,7 @@ export async function fetchTotalProfit() {
         ) as total_profit
     `;
 
-    return totalProfit[0].total_profit;
+    return totalProfit[0]?.total_profit || 0;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total profit data.');

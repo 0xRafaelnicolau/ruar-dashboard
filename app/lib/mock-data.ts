@@ -1,8 +1,8 @@
 /*//////////////////////////////////////////////////////////////
-                        MANAGER
+                        COLLABORATOR
 //////////////////////////////////////////////////////////////*/
 
-const managers = [
+const collaborators = [
     {
         id: '410544b2-4001-4271-9855-fec4b6a6442a',
         name: 'Ron',
@@ -91,20 +91,16 @@ const customers = [
 const services = [
     {
         id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
-        manager_id: managers[4].id, // street 
-        customer_id: customers[0].id, // komet
-        collaborator_id: [managers[0].id, managers[5].id], // ron, flor
+        customer_id: customers[0].id,
         name: 'Videoclip Komet',
-        description: 'Videoclip da to título "Longe" dos artistas Komet e Apollo G',
+        description: 'Videoclip da música Longe',
         type: 'music',
     },
     {
         id: 'b2c3d4e5-f6a7-8901-bcde-f23456789012',
-        manager_id: managers[0].id, // ron
-        customer_id: customers[1].id, // snails
-        collaborator_id: [managers[0].id], // cbs
+        customer_id: customers[1].id,
         name: 'Mix/Master + Beat Snails',
-        description: 'Full mix/master + beat para o artista Snails',
+        description: 'Full Mix/Master + Beat',
         type: 'video',
     },
 ];
@@ -118,7 +114,7 @@ const payments = [
         id: 'a0a1b2c3-d4e5-6789-abcd-ef1234567890',
         service_id: services[0].id,
         amount: 1000,
-        date: '2025-06-15',
+        date: '2025-07-01',
         type: 'incoming',
         description: '1º terço do pagamento',
         status: 'paid',
@@ -127,7 +123,7 @@ const payments = [
         id: 'b2b3c4d5-e6f7-8901-bcde-f23456789012',
         service_id: services[0].id,
         amount: 750,
-        date: '2025-07-01',
+        date: '2025-07-07',
         type: 'incoming',
         description: '2º terço do pagamento',
         status: 'paid',
@@ -142,21 +138,32 @@ const payments = [
         status: 'paid',
     },
     {
-        id: 'c2b3c4d5-e6f7-8901-bcde-f23456789012',
+        id: 'd1b3c4d5-e6f7-8901-bcde-f23456789012',
         service_id: services[0].id,
-        amount: 800,
+        amount: 500,
         date: '2025-07-01',
         type: 'outgoing',
-        description: 'Pagamento ron',
+        description: 'Custos de produção',
+        status: 'paid',
+    },
+    {
+        id: 'c2b3c4d5-e6f7-8901-bcde-f23456789012',
+        service_id: services[0].id,
+        collaborator_id: collaborators[0].id, // Ron
+        amount: 1000,
+        date: '2025-07-01',
+        type: 'outgoing',
+        description: 'Pagamento Ron',
         status: 'paid',
     },
     {
         id: 'd3c4d5e6-f7a8-9012-cdef-345678901234',
         service_id: services[0].id,
-        amount: 300,
+        collaborator_id: collaborators[5].id, // Flor
+        amount: 250,
         date: '2025-07-15',
         type: 'outgoing',
-        description: 'Pagamento flor',
+        description: 'Pagamento Flor',
         status: 'paid',
     },
     {
@@ -164,6 +171,7 @@ const payments = [
         service_id: services[1].id,
         amount: 100,
         date: '2025-07-20',
+        description: 'Pagamento 1º terço',
         type: 'incoming',
         status: 'paid',
     },
@@ -172,6 +180,7 @@ const payments = [
         service_id: services[1].id,
         amount: 100,
         date: '2025-08-05',
+        description: 'Pagamento 2º terço',
         type: 'incoming',
         status: 'paid',
     },
@@ -180,18 +189,20 @@ const payments = [
         service_id: services[1].id,
         amount: 100,
         date: '2025-08-20',
+        description: 'Pagamento 3º terço',
         type: 'incoming',
         status: 'pending',
     },
     {
         id: 'f3c4d5e6-f7a8-9012-cdef-345678901234',
         service_id: services[1].id,
+        collaborator_id: collaborators[2].id, // CBS
         amount: 200,
         date: '2025-07-15',
+        description: 'Pagamento CBS',
         type: 'outgoing',
-        description: 'Pagamento cbs',
         status: 'paid',
     },
 ];
 
-export { managers, customers, services, payments };
+export { collaborators, customers, services, payments }; 
