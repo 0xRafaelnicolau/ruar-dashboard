@@ -9,8 +9,8 @@ export default function Logo() {
             <Image
                 src="/logo.jpg"
                 alt="Ruar Logo"
-                width={128}
-                height={128}
+                width={80}
+                height={80}
                 priority
             />
         </div>
