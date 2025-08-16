@@ -7,8 +7,8 @@ import {
 const links = [
     { name: 'Painel', href: '/dashboard', icon: Home },
     {
-        name: 'Serviços',
-        href: '/dashboard/services',
+        name: 'Pagamentos',
+        href: '/dashboard/invoices',
         icon: Briefcase,
     },
     {
