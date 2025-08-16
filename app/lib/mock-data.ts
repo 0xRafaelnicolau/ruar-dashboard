@@ -97,8 +97,6 @@ const services = [
         name: 'Videoclip Komet',
         description: 'Videoclip da to título "Longe" dos artistas Komet e Apollo G',
         type: 'music',
-        price: 2500,
-        costs: 800,
     },
     {
         id: 'b2c3d4e5-f6a7-8901-bcde-f23456789012',
@@ -108,8 +106,6 @@ const services = [
         name: 'Mix/Master + Beat Snails',
         description: 'Full mix/master + beat para o artista Snails',
         type: 'video',
-        price: 300,
-        costs: 0,
     },
 ];
 

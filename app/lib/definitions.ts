@@ -43,8 +43,6 @@ export type Service = {
     name: string;
     description: string;
     type: 'video' | 'music' | 'marketing';
-    price: number;
-    costs: number;
 }
 
 /*//////////////////////////////////////////////////////////////

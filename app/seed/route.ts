@@ -67,8 +67,6 @@ async function seedServices() {
       name VARCHAR(255) NOT NULL,
       description TEXT NOT NULL,
       type VARCHAR(50) NOT NULL,
-      price DECIMAL(10,2) NOT NULL,
-      costs DECIMAL(10,2) NOT NULL,
       FOREIGN KEY (manager_id) REFERENCES managers(id),
       FOREIGN KEY (customer_id) REFERENCES customers(id)
     );
@@ -77,8 +75,8 @@ async function seedServices() {
   const insertedServices = await Promise.all(
     services.map(
       (service) => sql`
-        INSERT INTO services (id, manager_id, customer_id, collaborator_id, name, description, type, price, costs)
-        VALUES (${service.id}, ${service.manager_id}, ${service.customer_id}, ${service.collaborator_id}, ${service.name}, ${service.description}, ${service.type}, ${service.price}, ${service.costs})
+        INSERT INTO services (id, manager_id, customer_id, collaborator_id, name, description, type)
+        VALUES (${service.id}, ${service.manager_id}, ${service.customer_id}, ${service.collaborator_id}, ${service.name}, ${service.description}, ${service.type})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
