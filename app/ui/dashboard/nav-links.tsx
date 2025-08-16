@@ -2,6 +2,7 @@ import {
     Users,
     Home,
     Briefcase,
+    Building2,
 } from 'lucide-react';
 
 const links = [
@@ -14,8 +15,13 @@ const links = [
     {
         name: 'Clientes',
         href: '/dashboard/customers',
-        icon: Users
+        icon: Building2
     },
+    {
+        name: 'Colaboradores',
+        href: '/dashboard/collaborators',
+        icon: Users
+    }
 ];
 
 export default function NavLinks() {
