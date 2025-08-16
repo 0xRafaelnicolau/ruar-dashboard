@@ -1,4 +1,6 @@
 import Logo from '@/app/ui/logo';
+import { Button } from '@/app/ui/button';
+import Link from 'next/link';
 
 export default function Page() {
   return (
@@ -9,7 +11,15 @@ export default function Page() {
         </div>
       </div>
       <div className="w-full md:w-1/2 bg-white flex items-center justify-center">
-        <h1 className="text-3xl font-bold text-black">Welcome to Ruar Dashboard</h1>
+        <div className="text-center space-y-6 flex flex-col items-center">
+          <h1 className="text-3xl font-bold text-black">Welcome to Ruar Dashboard</h1>
+          {/* TODO: Refactor this to eventually add authentication */}
+          <Link href="/dashboard">
+            <Button>
+              Go to Dashboard
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
