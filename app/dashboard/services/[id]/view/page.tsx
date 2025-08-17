@@ -92,7 +92,7 @@ async function ServiceViewContent({ id }: { id: string }) {
                         <div className="space-y-4">
                             <div>
                                 <p className="text-sm text-gray-600 mb-1">Descrição</p>
-                                <p className="text-black">{serviceAndPayments.description || 'Sem descrição'}</p>
+                                <p className="text-sm text-black">{serviceAndPayments.description || 'Sem descrição'}</p>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
@@ -103,7 +103,7 @@ async function ServiceViewContent({ id }: { id: string }) {
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-600 mb-1">ID do Serviço</p>
-                                    <p className="text-black font-mono text-sm">{serviceAndPayments.id}</p>
+                                    <p className="text-sm text-black font-mono">{serviceAndPayments.id}</p>
                                 </div>
                             </div>
                         </div>
@@ -118,11 +118,11 @@ async function ServiceViewContent({ id }: { id: string }) {
                         <div className="space-y-3">
                             <div className="flex items-center gap-3">
                                 <User className="h-4 w-4 text-gray-500" />
-                                <span className="text-black">{serviceAndPayments.customer_name}</span>
+                                <span className="text-sm text-black">{serviceAndPayments.customer_name}</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Mail className="h-4 w-4 text-gray-500" />
-                                <span className="text-black">{serviceAndPayments.customer_email}</span>
+                                <span className="text-sm text-black">{serviceAndPayments.customer_email}</span>
                             </div>
                         </div>
                     </div>
