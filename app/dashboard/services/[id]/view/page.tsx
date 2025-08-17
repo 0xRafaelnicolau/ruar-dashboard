@@ -195,25 +195,25 @@ async function ServiceViewContent({ id }: { id: string }) {
                             <TrendingUp className="h-5 w-5" />
                             Resumo Financeiro
                         </h2>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Receita Total</span>
-                                <span className="font-semibold text-green-600">€{grossAmount.toFixed(2)}</span>
+                                <span className="text-sm text-gray-600">Receita Total</span>
+                                <span className="text-sm font-semibold text-green-600">€{grossAmount.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Custos Totais</span>
-                                <span className="font-semibold text-red-600">€{totalCosts.toFixed(2)}</span>
+                                <span className="text-sm text-gray-600">Custos Totais</span>
+                                <span className="text-sm font-semibold text-red-600">€{totalCosts.toFixed(2)}</span>
                             </div>
                             <hr className="border-gray-200" />
                             <div className="flex justify-between items-center">
-                                <span className="text-black font-medium">Lucro</span>
-                                <span className={`font-bold text-lg ${profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                <span className="text-sm text-black font-medium">Lucro</span>
+                                <span className={`text-base font-bold ${profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                     €{profit.toFixed(2)}
                                 </span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Margem de Lucro</span>
-                                <span className={`font-semibold ${profitMargin >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                <span className="text-sm text-gray-600">Margem de Lucro</span>
+                                <span className={`text-sm font-semibold ${profitMargin >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                     {profitMargin.toFixed(1)}%
                                 </span>
                             </div>
@@ -222,22 +222,22 @@ async function ServiceViewContent({ id }: { id: string }) {
 
                     {/* Payment Status */}
                     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
                             <CheckCircle className="h-5 w-5" />
                             Estado dos Pagamentos
                         </h2>
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Pagamentos Realizados</span>
-                                <span className="font-semibold text-black">{paidPayments.length}</span>
+                                <span className="text-sm text-gray-600">Pagamentos Realizados</span>
+                                <span className="text-sm font-semibold text-black">{paidPayments.length}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Pagamentos Pendentes</span>
-                                <span className="font-semibold text-black">{pendingPayments.length}</span>
+                                <span className="text-sm text-gray-600">Pagamentos Pendentes</span>
+                                <span className="text-sm font-semibold text-black">{pendingPayments.length}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Total de Pagamentos</span>
-                                <span className="font-semibold text-black">{serviceAndPayments.payments.length}</span>
+                                <span className="text-sm text-gray-600">Total de Pagamentos</span>
+                                <span className="text-sm font-semibold text-black">{serviceAndPayments.payments.length}</span>
                             </div>
                         </div>
                     </div>
