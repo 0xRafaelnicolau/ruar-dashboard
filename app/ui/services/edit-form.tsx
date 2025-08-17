@@ -80,7 +80,7 @@ export default function Form({
 
     return (
         <form action={handleSubmit}>
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-6">
                 {/* Customer Name */}
                 <div>
                     <label htmlFor="customer" className="mb-2 block text-sm font-medium text-black">
@@ -90,7 +90,7 @@ export default function Form({
                         <select
                             id="customer"
                             name="customerId"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                             defaultValue={serviceAndPayments.customer_id}
                             required
                         >
@@ -103,7 +103,7 @@ export default function Form({
                                 </option>
                             ))}
                         </select>
-                        <User className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                        <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@ export default function Form({
                             defaultValue={serviceAndPayments.name}
                             required
                         />
-                        <FileText className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                        <FileText className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                     </div>
                 </div>
 
@@ -141,7 +141,7 @@ export default function Form({
                             defaultValue={serviceAndPayments.description}
                             required
                         />
-                        <AlignLeft className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                        <AlignLeft className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                     </div>
                 </div>
 
@@ -154,7 +154,7 @@ export default function Form({
                         <select
                             id="type"
                             name="type"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                             defaultValue={serviceAndPayments.type}
                             required
                         >
@@ -165,7 +165,7 @@ export default function Form({
                             <option value="music">Música</option>
                             <option value="marketing">Marketing</option>
                         </select>
-                        <Tag className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                        <Tag className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                     </div>
                 </div>
 
@@ -209,7 +209,7 @@ export default function Form({
                                                 placeholder="0.00"
                                                 className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             />
-                                            <Euro className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                            <Euro className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                         </div>
                                     </div>
 
@@ -225,7 +225,7 @@ export default function Form({
                                                 onChange={(e) => updatePayment(index, 'date', e.target.value)}
                                                 className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             />
-                                            <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                            <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                         </div>
                                     </div>
 
@@ -238,15 +238,15 @@ export default function Form({
                                             <select
                                                 value={payment.type}
                                                 onChange={(e) => updatePayment(index, 'type', e.target.value as 'incoming' | 'outgoing')}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             >
                                                 <option value="incoming">Entrada</option>
                                                 <option value="outgoing">Saída</option>
                                             </select>
                                             {payment.type === 'incoming' ? (
-                                                <ArrowUpRight className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                                <ArrowUpRight className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                             ) : (
-                                                <ArrowDownRight className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                                <ArrowDownRight className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                             )}
                                         </div>
                                     </div>
@@ -260,15 +260,15 @@ export default function Form({
                                             <select
                                                 value={payment.status}
                                                 onChange={(e) => updatePayment(index, 'status', e.target.value as 'pending' | 'paid')}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             >
                                                 <option value="pending">Pendente</option>
                                                 <option value="paid">Pago</option>
                                             </select>
                                             {payment.status === 'pending' ? (
-                                                <Clock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                                <Clock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                             ) : (
-                                                <CheckCircle className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                                <CheckCircle className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                             )}
                                         </div>
                                     </div>
@@ -282,7 +282,7 @@ export default function Form({
                                             <select
                                                 value={payment.collaborator_id || ''}
                                                 onChange={(e) => updatePayment(index, 'collaborator_id', e.target.value || undefined)}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             >
                                                 <option value="">Sem colaborador</option>
                                                 {collaborators.map((collaborator) => (
@@ -291,7 +291,7 @@ export default function Form({
                                                     </option>
                                                 ))}
                                             </select>
-                                            <Users className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                            <Users className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                         </div>
                                     </div>
 
@@ -308,7 +308,7 @@ export default function Form({
                                                 placeholder="Descrição do pagamento"
                                                 className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             />
-                                            <AlignLeft className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
+                                            <AlignLeft className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600 pointer-events-none" />
                                         </div>
                                     </div>
                                 </div>
