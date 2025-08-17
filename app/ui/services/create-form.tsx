@@ -62,7 +62,7 @@ export default function Form({
 
     return (
         <form action={handleSubmit}>
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
                 {/* Customer Name */}
                 <div>
                     <label htmlFor="customer" className="mb-2 block text-sm font-medium text-black">

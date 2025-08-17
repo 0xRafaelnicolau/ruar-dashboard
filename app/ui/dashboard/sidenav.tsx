@@ -7,8 +7,8 @@ export default function SideNav() {
     return (
         <>
             {/* Mobile Top Navbar */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-black w-full">
-                <div className="flex items-center justify-between px-4 py-1">
+            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-black w-full h-16">
+                <div className="flex items-center justify-between px-4 py-3 h-full">
                     {/* Logo */}
                     <Link href="https://ruar.pt" className="flex items-center">
                         <div className="text-white">
@@ -74,7 +74,7 @@ export default function SideNav() {
             </div>
 
             {/* Mobile Spacer */}
-            <div className="md:hidden h-10"></div>
+            <div className="md:hidden h-16"></div>
         </>
     );
 }

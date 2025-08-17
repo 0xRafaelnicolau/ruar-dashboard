@@ -14,8 +14,8 @@ export default function Breadcrumbs({
     breadcrumbs: Breadcrumb[];
 }) {
     return (
-        <nav aria-label="Breadcrumb" className="mb-6 block">
-            <ol className={clsx(montserrat.className, 'flex text-xl md:text-2xl')}>
+        <nav aria-label="Breadcrumb" className="mb-4 md:mb-6 block">
+            <ol className={clsx(montserrat.className, 'flex text-lg md:text-xl lg:text-2xl')}>
                 {breadcrumbs.map((breadcrumb, index) => (
                     <li
                         key={breadcrumb.href}
