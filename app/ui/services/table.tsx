@@ -1,4 +1,4 @@
-import { UpdateService, DeleteService, ViewPayments } from '@/app/ui/services/buttons';
+import { UpdateService, DeleteService, ViewService } from '@/app/ui/services/buttons';
 import { formatDateToLocal } from '@/app/lib/utils';
 import { fetchFilteredServices } from '@/app/lib/data';
 
@@ -38,7 +38,7 @@ export default async function ServicesTable({
                                         <p className="text-sm text-gray-500">{formatDateToLocal(service.date)}</p>
                                     </div>
                                     <div className="flex justify-end gap-2">
-                                        <ViewPayments id={service.id} />
+                                        <ViewService id={service.id} />
                                         <UpdateService id={service.id} />
                                         <DeleteService id={service.id} />
                                     </div>
@@ -97,7 +97,7 @@ export default async function ServicesTable({
                                     </td>
                                     <td className="py-3 px-6 w-1/6">
                                         <div className="flex justify-end gap-3">
-                                            <ViewPayments id={service.id} />
+                                            <ViewService id={service.id} />
                                             <UpdateService id={service.id} />
                                             <DeleteService id={service.id} />
                                         </div>

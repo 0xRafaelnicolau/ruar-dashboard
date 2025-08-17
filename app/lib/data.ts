@@ -5,7 +5,9 @@ import {
   Revenue,
   Costs,
   Profit,
-  ServicesTable
+  ServicesTable,
+  ServiceWithPayments,
+  Payment
 } from './definitions';
 
 // Ensure database connection with proper error handling
@@ -89,6 +91,56 @@ export async function fetchNumberOfCustomers() {
                         SERVICE
 //////////////////////////////////////////////////////////////*/
 
+export async function fetchServiceAndPayments(id: string) {
+  try {
+    // First, fetch the service with customer information
+    const [service] = await sql<ServiceWithPayments[]>`
+      SELECT
+        s.id,
+        s.customer_id,
+        s.name,
+        s.description,
+        s.type,
+        c.name as customer_name,
+        c.email as customer_email
+      FROM services s
+      JOIN customers c ON s.customer_id = c.id
+      WHERE s.id = ${id}
+    `;
+
+    if (!service) {
+      throw new Error('Service not found');
+    }
+
+    // Then, fetch all payments associated with this service
+    const payments = await sql<Payment[]>`
+      SELECT
+        p.id,
+        p.service_id,
+        p.collaborator_id,
+        p.amount,
+        p.date,
+        p.description,
+        p.type,
+        p.status
+      FROM payments p
+      WHERE p.service_id = ${id}
+      ORDER BY p.date DESC
+    `;
+
+    // Combine service and payments
+    const serviceWithPayments: ServiceWithPayments = {
+      ...service,
+      payments: payments || []
+    };
+
+    return serviceWithPayments;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch service and payments.');
+  }
+}
+
 export async function fetchNumberOfServices() {
   try {
     const servicesCount = await sql`SELECT COUNT(*) as count FROM services`;
@@ -126,7 +178,7 @@ export async function fetchFilteredServices(
         s.description ILIKE ${`%${query}%`} OR
         s.type ILIKE ${`%${query}%`}
       GROUP BY s.id, s.name, c.name, c.email, s.type, s.description
-      ORDER BY s.id DESC
+      ORDER BY date DESC, s.id DESC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
 
@@ -177,7 +229,7 @@ export async function fetchTotalPayments() {
   }
 }
 
-export async function fetchPaidPayments() {
+export async function fetchTotalCollected() {
   try {
     const paidPayments = await sql`
       SELECT COALESCE(SUM(amount), 0) as total_amount 
@@ -192,7 +244,7 @@ export async function fetchPaidPayments() {
   }
 }
 
-export async function fetchPendingPayments() {
+export async function fetchTotalPending() {
   try {
     const pendingPayments = await sql`
       SELECT COALESCE(SUM(amount), 0) as total_amount 

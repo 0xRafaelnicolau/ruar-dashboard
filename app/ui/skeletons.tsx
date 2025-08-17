@@ -115,7 +115,6 @@ export function ServicesMobileSkeleton() {
                 <div className="flex justify-end gap-2">
                     <div className={`${shimmer} relative h-8 w-8 rounded-md bg-gray-200`} />
                     <div className={`${shimmer} relative h-8 w-8 rounded-md bg-gray-200`} />
-                    <div className={`${shimmer} relative h-8 w-8 rounded-md bg-gray-200`} />
                 </div>
             </div>
         </div>
@@ -200,7 +199,7 @@ export function ServicesTableSkeleton() {
                                     <div className={`${shimmer} relative h-5 w-8 rounded bg-gray-200`} />
                                 </th>
                                 <th scope="col" className="w-1/6 px-6 py-5 font-medium">
-                                    <div className={`${shimmer} relative h-5 w-12 rounded bg-gray-200`} />
+                                    <div className={`${shimmer} relative h-5 w-8 rounded bg-gray-200`} />
                                 </th>
                             </tr>
                         </thead>

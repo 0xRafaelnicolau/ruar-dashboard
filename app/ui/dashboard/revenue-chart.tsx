@@ -102,7 +102,7 @@ export default function RevenueChart({ revenue }: RevenueChartProps) {
     return (
         <div className="w-full md:col-span-4">
             <h2 className={`${montserrat.className} mb-4 text-xl md:text-2xl text-black`}>
-                Faturação Mensal
+                Faturação
             </h2>
             <div className="rounded-xl bg-gray-50 p-4">
                 <div className="bg-white p-4 rounded-md">

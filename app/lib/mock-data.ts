@@ -94,14 +94,14 @@ const services = [
         customer_id: customers[0].id,
         name: 'Videoclip Komet',
         description: 'Videoclip da música Longe',
-        type: 'music',
+        type: 'video',
     },
     {
         id: 'b2c3d4e5-f6a7-8901-bcde-f23456789012',
         customer_id: customers[1].id,
         name: 'Mix/Master + Beat Snails',
         description: 'Full Mix/Master + Beat',
-        type: 'video',
+        type: 'music',
     },
 ];
 

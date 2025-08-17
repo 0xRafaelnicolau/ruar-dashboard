@@ -43,6 +43,17 @@ export type Service = {
     type: 'video' | 'music' | 'marketing';
 }
 
+export type ServiceWithPayments = {
+    id: string;
+    customer_id: string;
+    name: string;
+    description: string;
+    type: 'video' | 'music' | 'marketing';
+    customer_name: string;
+    customer_email: string;
+    payments: Payment[];
+};
+
 export type ServicesTable = {
     id: string;
     service_name: string;
@@ -61,11 +72,20 @@ export type ServicesTable = {
 export type Payment = {
     id: string;
     service_id: string;
-    collaborator_id?: string; // Optional field to link payment to collaborator
+    collaborator_id?: string;
     amount: number;
     date: string;
     description: string;
     type: 'incoming' | 'outgoing'
+    status: 'pending' | 'paid';
+};
+
+export type PaymentFormData = {
+    collaborator_id?: string;
+    amount: number;
+    date: string;
+    description: string;
+    type: 'incoming' | 'outgoing';
     status: 'pending' | 'paid';
 };
 
