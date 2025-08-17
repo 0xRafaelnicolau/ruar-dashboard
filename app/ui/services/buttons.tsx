@@ -71,7 +71,7 @@ export function DeleteService({ id }: { id: string }) {
                                 <AlertTriangle className="h-6 w-6 text-red-600" />
                             </div>
                             <div>
-                                <h3 className="text-lg font-semibold text-gray-900">
+                                <h3 className="text-lg font-semibold text-black">
                                     Confirmar Remoção
                                 </h3>
                                 <p className="text-sm text-gray-600">

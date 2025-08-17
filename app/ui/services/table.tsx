@@ -46,7 +46,7 @@ export default async function ServicesTable({
                             </div>
                         ))}
                     </div>
-                    <table className="hidden min-w-full text-gray-900 md:table table-fixed">
+                    <table className="hidden min-w-full text-black md:table table-fixed">
                         <thead className="rounded-lg text-left text-sm font-normal">
                             <tr>
                                 <th scope="col" className="w-1/4 px-6 py-5 font-medium">

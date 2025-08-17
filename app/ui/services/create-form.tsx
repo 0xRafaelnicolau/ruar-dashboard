@@ -65,14 +65,14 @@ export default function Form({
             <div className="space-y-6">
                 {/* Customer Name */}
                 <div>
-                    <label htmlFor="customer" className="mb-2 block text-sm font-medium text-gray-900">
+                    <label htmlFor="customer" className="mb-2 block text-sm font-medium text-black">
                         Cliente
                     </label>
                     <div className="relative">
                         <select
                             id="customer"
                             name="customerId"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                             defaultValue=""
                             required
                         >
@@ -91,7 +91,7 @@ export default function Form({
 
                 {/* Service Name */}
                 <div>
-                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-900">
+                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-black">
                         Nome do Serviço
                     </label>
                     <div className="relative">
@@ -100,7 +100,7 @@ export default function Form({
                             name="name"
                             type="text"
                             placeholder="Introduza o nome do serviço"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                             required
                         />
                         <FileText className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
@@ -109,7 +109,7 @@ export default function Form({
 
                 {/* Service Description */}
                 <div>
-                    <label htmlFor="description" className="mb-2 block text-sm font-medium text-gray-900">
+                    <label htmlFor="description" className="mb-2 block text-sm font-medium text-black">
                         Descrição
                     </label>
                     <div className="relative">
@@ -118,7 +118,7 @@ export default function Form({
                             name="description"
                             type="text"
                             placeholder="Introduza a descrição do serviço"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                             required
                         />
                         <AlignLeft className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
@@ -127,14 +127,14 @@ export default function Form({
 
                 {/* Service Type */}
                 <div>
-                    <label htmlFor="type" className="mb-2 block text-sm font-medium text-gray-900">
+                    <label htmlFor="type" className="mb-2 block text-sm font-medium text-black">
                         Tipo de Serviço
                     </label>
                     <div className="relative">
                         <select
                             id="type"
                             name="type"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                             defaultValue=""
                             required
                         >
@@ -152,7 +152,7 @@ export default function Form({
                 {/* Payments Section */}
                 <div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-900">
+                        <label className="block text-sm font-medium text-black">
                             Pagamentos
                         </label>
                     </div>
@@ -187,7 +187,7 @@ export default function Form({
                                                 value={payment.amount}
                                                 onChange={(e) => updatePayment(index, 'amount', parseFloat(e.target.value) || 0)}
                                                 placeholder="0.00"
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             />
                                             <Euro className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
                                         </div>
@@ -203,7 +203,7 @@ export default function Form({
                                                 type="date"
                                                 value={payment.date}
                                                 onChange={(e) => updatePayment(index, 'date', e.target.value)}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             />
                                             <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
                                         </div>
@@ -218,7 +218,7 @@ export default function Form({
                                             <select
                                                 value={payment.type}
                                                 onChange={(e) => updatePayment(index, 'type', e.target.value as 'incoming' | 'outgoing')}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             >
                                                 <option value="incoming">Entrada</option>
                                                 <option value="outgoing">Saída</option>
@@ -240,7 +240,7 @@ export default function Form({
                                             <select
                                                 value={payment.status}
                                                 onChange={(e) => updatePayment(index, 'status', e.target.value as 'pending' | 'paid')}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             >
                                                 <option value="pending">Pendente</option>
                                                 <option value="paid">Pago</option>
@@ -262,7 +262,7 @@ export default function Form({
                                             <select
                                                 value={payment.collaborator_id || ''}
                                                 onChange={(e) => updatePayment(index, 'collaborator_id', e.target.value || undefined)}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             >
                                                 <option value="">Sem colaborador</option>
                                                 {collaborators.map((collaborator) => (
@@ -286,7 +286,7 @@ export default function Form({
                                                 value={payment.description}
                                                 onChange={(e) => updatePayment(index, 'description', e.target.value)}
                                                 placeholder="Descrição do pagamento"
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-10 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                                             />
                                             <AlignLeft className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors duration-200 peer-focus:text-black peer-hover:text-gray-600" />
                                         </div>

@@ -3,6 +3,8 @@ import Breadcrumbs from '@/app/ui/services/breadcrumbs';
 import { fetchServiceAndPayments } from '@/app/lib/data';
 import { formatDateToLocal } from '@/app/lib/utils';
 import { UpdateService, DeleteService } from '@/app/ui/services/buttons';
+import { ServiceViewSkeleton } from '@/app/ui/skeletons';
+import { Suspense } from 'react';
 import {
     Calendar,
     User,
@@ -19,10 +21,7 @@ import {
     AlertCircle
 } from 'lucide-react';
 
-export default async function Page(props: { params: Promise<{ id: string }> }) {
-    const params = await props.params;
-    const id = params.id;
-
+async function ServiceViewContent({ id }: { id: string }) {
     const serviceAndPayments = await fetchServiceAndPayments(id);
 
     // Calculate financial metrics
@@ -93,7 +92,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                         <div className="space-y-4">
                             <div>
                                 <p className="text-sm text-gray-600 mb-1">Descrição</p>
-                                <p className="text-gray-900">{serviceAndPayments.description || 'Sem descrição'}</p>
+                                <p className="text-black">{serviceAndPayments.description || 'Sem descrição'}</p>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
@@ -104,7 +103,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                                 </div>
                                 <div>
                                     <p className="text-sm text-gray-600 mb-1">ID do Serviço</p>
-                                    <p className="text-gray-900 font-mono text-sm">{serviceAndPayments.id}</p>
+                                    <p className="text-black font-mono text-sm">{serviceAndPayments.id}</p>
                                 </div>
                             </div>
                         </div>
@@ -119,11 +118,11 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                         <div className="space-y-3">
                             <div className="flex items-center gap-3">
                                 <User className="h-4 w-4 text-gray-500" />
-                                <span className="text-gray-900">{serviceAndPayments.customer_name}</span>
+                                <span className="text-black">{serviceAndPayments.customer_name}</span>
                             </div>
                             <div className="flex items-center gap-3">
                                 <Mail className="h-4 w-4 text-gray-500" />
-                                <span className="text-gray-900">{serviceAndPayments.customer_email}</span>
+                                <span className="text-black">{serviceAndPayments.customer_email}</span>
                             </div>
                         </div>
                     </div>
@@ -149,10 +148,10 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                                     <tbody>
                                         {serviceAndPayments.payments.map((payment) => (
                                             <tr key={payment.id} className="border-b border-gray-100 hover:bg-gray-50">
-                                                <td className="py-3 px-4 text-sm text-gray-900">
+                                                <td className="py-3 px-4 text-sm text-black">
                                                     {formatDateToLocal(payment.date)}
                                                 </td>
-                                                <td className="py-3 px-4 text-sm text-gray-900">
+                                                <td className="py-3 px-4 text-sm text-black">
                                                     {payment.description}
                                                 </td>
                                                 <td className="py-3 px-4">
@@ -172,7 +171,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                                                     </div>
                                                 </td>
                                                 <td className="py-3 px-4 text-right">
-                                                    <span className={`font-medium ${payment.type === 'incoming' ? 'text-green-600' : 'text-red-600'
+                                                    <span className={`font-medium whitespace-nowrap ${payment.type === 'incoming' ? 'text-green-600' : 'text-red-600'
                                                         }`}>
                                                         {payment.type === 'incoming' ? '+' : '-'}€{Number(payment.amount).toFixed(2)}
                                                     </span>
@@ -207,7 +206,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                             </div>
                             <hr className="border-gray-200" />
                             <div className="flex justify-between items-center">
-                                <span className="text-gray-900 font-medium">Lucro</span>
+                                <span className="text-black font-medium">Lucro</span>
                                 <span className={`font-bold text-lg ${profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                     €{profit.toFixed(2)}
                                 </span>
@@ -225,20 +224,20 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                         <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                             <CheckCircle className="h-5 w-5" />
-                            Status dos Pagamentos
+                            Estado dos Pagamentos
                         </h2>
                         <div className="space-y-3">
                             <div className="flex justify-between items-center">
                                 <span className="text-gray-600">Pagamentos Realizados</span>
-                                <span className="font-semibold text-green-600">{paidPayments.length}</span>
+                                <span className="font-semibold text-black">{paidPayments.length}</span>
                             </div>
                             <div className="flex justify-between items-center">
                                 <span className="text-gray-600">Pagamentos Pendentes</span>
-                                <span className="font-semibold text-yellow-600">{pendingPayments.length}</span>
+                                <span className="font-semibold text-black">{pendingPayments.length}</span>
                             </div>
                             <div className="flex justify-between items-center">
                                 <span className="text-gray-600">Total de Pagamentos</span>
-                                <span className="font-semibold text-gray-900">{serviceAndPayments.payments.length}</span>
+                                <span className="font-semibold text-black">{serviceAndPayments.payments.length}</span>
                             </div>
                         </div>
                     </div>
@@ -252,7 +251,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                         <div className="space-y-3">
                             <div>
                                 <p className="text-sm text-gray-600">Primeiro Pagamento</p>
-                                <p className="text-sm font-medium text-gray-900">
+                                <p className="text-sm font-medium text-black">
                                     {serviceAndPayments.payments.length > 0
                                         ? formatDateToLocal(serviceAndPayments.payments[serviceAndPayments.payments.length - 1].date)
                                         : 'N/A'
@@ -261,7 +260,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600">Último Pagamento</p>
-                                <p className="text-sm font-medium text-gray-900">
+                                <p className="text-sm font-medium text-black">
                                     {serviceAndPayments.payments.length > 0
                                         ? formatDateToLocal(serviceAndPayments.payments[0].date)
                                         : 'N/A'
@@ -270,7 +269,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                             </div>
                             <div>
                                 <p className="text-sm text-gray-600">Valor Médio por Pagamento</p>
-                                <p className="text-sm font-medium text-gray-900">
+                                <p className="text-sm font-medium text-black">
                                     {serviceAndPayments.payments.length > 0
                                         ? `€${(grossAmount / incomingPayments.length).toFixed(2)}`
                                         : 'N/A'
@@ -282,5 +281,16 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
                 </div>
             </div>
         </main>
+    );
+}
+
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
+    const id = params.id;
+
+    return (
+        <Suspense fallback={<ServiceViewSkeleton />}>
+            <ServiceViewContent id={id} />
+        </Suspense>
     );
 }

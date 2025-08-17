@@ -28,7 +28,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
             <div className="relative w-full">
                 <input
                     id="search"
-                    className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-gray-900 placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                    className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-4 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
                     placeholder={placeholder}
                     onChange={(e) => {
                         handleSearch(e.target.value);
