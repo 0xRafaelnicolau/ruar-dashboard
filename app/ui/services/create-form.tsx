@@ -72,7 +72,7 @@ export default function Form({
                         <select
                             id="customer"
                             name="customerId"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0 appearance-none"
                             defaultValue=""
                             required
                         >
@@ -134,7 +134,7 @@ export default function Form({
                         <select
                             id="type"
                             name="type"
-                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                            className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0 appearance-none"
                             defaultValue=""
                             required
                         >
@@ -218,7 +218,7 @@ export default function Form({
                                             <select
                                                 value={payment.type}
                                                 onChange={(e) => updatePayment(index, 'type', e.target.value as 'incoming' | 'outgoing')}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0 appearance-none"
                                             >
                                                 <option value="incoming">Entrada</option>
                                                 <option value="outgoing">Saída</option>
@@ -240,7 +240,7 @@ export default function Form({
                                             <select
                                                 value={payment.status}
                                                 onChange={(e) => updatePayment(index, 'status', e.target.value as 'pending' | 'paid')}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0 appearance-none"
                                             >
                                                 <option value="pending">Pendente</option>
                                                 <option value="paid">Pago</option>
@@ -262,7 +262,7 @@ export default function Form({
                                             <select
                                                 value={payment.collaborator_id || ''}
                                                 onChange={(e) => updatePayment(index, 'collaborator_id', e.target.value || undefined)}
-                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0"
+                                                className="peer block w-full h-[42px] rounded-lg border border-gray-300 bg-white pl-12 pr-8 text-sm text-black placeholder:text-gray-500 transition-all duration-200 ease-in-out hover:border-gray-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10 focus:ring-offset-0 appearance-none"
                                             >
                                                 <option value="">Sem colaborador</option>
                                                 {collaborators.map((collaborator) => (
