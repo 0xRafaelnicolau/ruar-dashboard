@@ -242,42 +242,7 @@ async function ServiceViewContent({ id }: { id: string }) {
                         </div>
                     </div>
 
-                    {/* Quick Stats */}
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                            <Calendar className="h-5 w-5" />
-                            Estatísticas Rápidas
-                        </h2>
-                        <div className="space-y-3">
-                            <div>
-                                <p className="text-sm text-gray-600">Primeiro Pagamento</p>
-                                <p className="text-sm font-medium text-black">
-                                    {serviceAndPayments.payments.length > 0
-                                        ? formatDateToLocal(serviceAndPayments.payments[serviceAndPayments.payments.length - 1].date)
-                                        : 'N/A'
-                                    }
-                                </p>
-                            </div>
-                            <div>
-                                <p className="text-sm text-gray-600">Último Pagamento</p>
-                                <p className="text-sm font-medium text-black">
-                                    {serviceAndPayments.payments.length > 0
-                                        ? formatDateToLocal(serviceAndPayments.payments[0].date)
-                                        : 'N/A'
-                                    }
-                                </p>
-                            </div>
-                            <div>
-                                <p className="text-sm text-gray-600">Valor Médio por Pagamento</p>
-                                <p className="text-sm font-medium text-black">
-                                    {serviceAndPayments.payments.length > 0
-                                        ? `€${(grossAmount / incomingPayments.length).toFixed(2)}`
-                                        : 'N/A'
-                                    }
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </main>
